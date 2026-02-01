@@ -1,12 +1,18 @@
 package ui;
 
+import java.awt.Frame;
+
 import javax.swing.JFrame;
 
 import model.GameModel;
 
 public class GameWindow {
+	public static final int WIDTH = 600; 
+	public static final int HEIGHT = 600;
+	
 
 	public static void show() {
+		
 		// Minimal model instance (empty for now, by design)
 		GameModel model = new GameModel();
 
@@ -18,7 +24,7 @@ public class GameWindow {
 		frame.add(new GameComponent(model));
 
 
-		frame.setSize(600, 600);
+		frame.setSize(WIDTH, HEIGHT);
 		frame.setLocationRelativeTo(null); // center on screen (nice UX, still minimal)
 		frame.setVisible(true);
 		}

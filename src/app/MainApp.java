@@ -3,7 +3,7 @@ package app;
 import javax.swing.SwingUtilities;
 
 import ui.GameWindow;
-
+import model.GameModel;
 /**
  * Class: MainApp
  * @author Put your team name here
@@ -11,6 +11,7 @@ import ui.GameWindow;
  * Entry point for the final project.
  */
 public class MainApp {
+	private GameModel game = new GameModel();
 	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
@@ -20,6 +21,7 @@ public class MainApp {
 	
 	public void run() {
 		GameWindow.show();
+		game.initialize();
 		// Hint: MainApp should not contain game logic or drawing code
 		}
 }
