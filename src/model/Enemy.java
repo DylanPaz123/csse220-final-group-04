@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.awt.image.*;
+import javax.swing.Timer;
 
 public class Enemy  {
 	private static BufferedImage sprite = null;
@@ -36,6 +37,30 @@ public class Enemy  {
 		sprite = ImageIO.read(Player.class.getResource(imgSource));
 		} catch (IOException | IllegalArgumentException ex) {
 		sprite = null; 
+		}
+	}
+	
+	public void moveDown() {
+		if(y<9 && y>=0 && levelMap.getMap()[y+1][x] != '#') {
+			y+=1;
+		}
+	}
+
+	public void moveUp() {
+		if(y<=9 && y>0 && levelMap.getMap()[y-1][x] != '#') {
+			y-=1;
+		}
+	}
+	
+	public void moveRight() {
+		if(x<9 && x>=0 && levelMap.getMap()[y][x+1] != '#') {
+			x+=1;
+		}
+	}
+
+	public void moveLeft() {
+		if(x<=9 && x>0 && levelMap.getMap()[y][x-1] != '#') {
+			x-=1;
 		}
 	}
 

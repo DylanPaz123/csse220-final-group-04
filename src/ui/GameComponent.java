@@ -10,16 +10,35 @@ import javax.swing.Timer;
 
 import model.GameModel;
 import model.Player;
+import java.util.Random;
 
 public class GameComponent extends JComponent {
 	private GameModel model;
 	private Timer timer;
+	
+	private int directionEnemy;
+	private Random random = new Random();
 
 	public GameComponent(GameModel model) {
 	this.model = model;
-	timer = new Timer(10, e -> {
+	timer = new Timer(30, e -> {
+		
+		for(int i=0; i<model.enemyList.size(); i++) {
+			directionEnemy = random.nextInt(75);
+			if (directionEnemy == 0) {
+				model.enemyList.get(i).moveDown();
+			} else if (directionEnemy == 1) {
+				model.enemyList.get(i).moveLeft();
+			} else if (directionEnemy == 2) {
+				model.enemyList.get(i).moveUp();
+			} else if (directionEnemy == 3) {
+				model.enemyList.get(i).moveRight();
+			}
+		}
     	repaint();
     });
+	
+	
 	timer.start();
     
 	

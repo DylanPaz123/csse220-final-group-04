@@ -42,6 +42,7 @@ public class Level {
 					tileList.add(newTile);
 					Enemy newEnemy = new Enemy(x,y,"zombiemc.png");
 					enemyList.add(newEnemy);
+					newEnemy.levelMap = this;
 				} else if (levelMap[y][x]==('E')) {
 					// initialize exit
 				}
