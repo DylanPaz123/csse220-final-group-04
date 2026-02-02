@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import model.GameModel;
 
 public class GameWindow {
-	public static final int WIDTH = 600; 
-	public static final int HEIGHT = 600;
+	public static final int WIDTH = 500; 
+	public static final int HEIGHT = 535;
 	
 
 	public static void show() {
@@ -17,7 +17,7 @@ public class GameWindow {
 		GameModel model = new GameModel();
 
 
-		JFrame frame = new JFrame("CSSE220 Final Project");
+		JFrame frame = new JFrame("CSSE220 Team Underscore Final Project");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 

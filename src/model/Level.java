@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Arrays;
 public class Level {
 	
@@ -11,32 +12,37 @@ public class Level {
 	
 	HashMap<Integer, char[][]> levels = new HashMap<>();
 	
-	
-	
 	public Level() {
 		
 	}
 	
-	public void initializeLevel(int levelId) {
+	public void initializeLevel(int levelId, Player player, ArrayList<Tile> tileList, ArrayList<Enemy> enemyList) {
 			this.levelMap = levels.get(levelId);
 		
-		for (int x = 0; x < levelMap.length ; x++) {
-			for (int y = 0; y < levelMap[x].length ; y++) {
-				if (levelMap[x][y]==('.')) {
-					// initialize ground tile
-				} else if (levelMap[x][y]==('#')) {
-					// initialize wall
-				} else if (levelMap[x][y]==('G')) {
-				
-				
-				} else if (levelMap[x][y]==('P')) {
-					// initialize player
-					player = new Player(x,y);
+		for (int y = 0; y < levelMap.length ; y++) {
+			for (int x = 0; x < levelMap[y].length ; x++) {
+				if (levelMap[y][x] == ('.')) {
+					Tile newGround = new Tile(x,y,"darkwall.png");
+					tileList.add(newGround);
+				} else if (levelMap[y][x] == ('#')) {
+					Tile newWall = new Tile(x,y,"lightwall.png");
+					tileList.add(newWall);
+				} else if (levelMap[y][x]==('G')) {
 					
-				} else if (levelMap[x][y]==('Z')) {
-					//initialize zombie
-					enemy = new Enemy(x,y);
-				} else if (levelMap[x][y]==('E')) {
+				} else if (levelMap[y][x]==('P')) {
+					// initialize player
+					Tile newTile = new Tile(x,y,"darkwall.png");
+					tileList.add(newTile);
+					player.x = x;
+					player.y = y;
+					player.levelMap = this;
+					
+				} else if (levelMap[y][x]==('Z')) {
+					Tile newTile = new Tile(x,y,"darkwall.png");
+					tileList.add(newTile);
+					Enemy newEnemy = new Enemy(x,y,"zombiemc.png");
+					enemyList.add(newEnemy);
+				} else if (levelMap[y][x]==('E')) {
 					// initialize exit
 				}
 			}
@@ -49,5 +55,9 @@ public class Level {
 	}
 	
 	 public Player getPlayer() { return player; }
+
+	 public char[][] getMap() {
+		return levelMap;
+	 }
 
 }
