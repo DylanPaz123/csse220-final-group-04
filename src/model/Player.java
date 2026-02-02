@@ -11,48 +11,60 @@ import java.io.*;
 public class Player  {
 	private static BufferedImage sprite = null;
 	private static boolean triedLoad = false;
-	private int x,y;
-	private int spriteWidth, spriteHeight;
+	public int x,y;
+	Level levelMap;
 	
-	
-	
-	public Player(int x, int y) {
+	public Player(int x, int y, String imgSource) {
 		this.x = x;
 		this.y = y;
-		spriteWidth = 30;
-		spriteHeight = 30;
-		loadSpriteOnce();
+		loadSpriteOnce(imgSource);
 	}
 
 	public void draw(Graphics2D g2) {
-	g2.setColor(Color.RED);
-	if (sprite != null) {
-		g2.drawImage(sprite, x, y, spriteWidth, spriteHeight,null);
-	} else {
+		if (sprite != null) {
+		// sprite replaces the circle
+		g2.drawImage(sprite, (x)*50, (y)*50, 50, 50, null);
+		} else {
+		// fallback if sprite failed to load
 		g2.setColor(Color.RED);
-		g2.fillOval(x, y, spriteWidth, spriteHeight);
+		g2.fillOval((x)*50, (y)*50, 50, 50);
+		}
 	}
 	
-	}
-		
-	public void move() {
-		x += 30;
-		y+= 30;
-	}
-	
-	private static void loadSpriteOnce() {
+	private static void loadSpriteOnce(String imgSource) {
 		if (triedLoad) return;
 		triedLoad = true;
 
 		try {
-		sprite = ImageIO.read(Player.class.getResource("tennis.png"));
+		sprite = ImageIO.read(Player.class.getResource(imgSource));
 		} catch (IOException | IllegalArgumentException ex) {
 
 		sprite = null; 
 		}
 		}
-//	public int[][] getSurroundingTiles(int curX, int curY) {
-//	//	return {0,0,0};
-//	}
+
+	public void moveDown() {
+		if(y<9 && y>=0 && levelMap.getMap()[y+1][x] != '#') {
+			y+=1;
+		}
+	}
+
+	public void moveUp() {
+		if(y<=9 && y>0 && levelMap.getMap()[y-1][x] != '#') {
+			y-=1;
+		}
+	}
+	
+	public void moveRight() {
+		if(x<9 && x>=0 && levelMap.getMap()[y][x+1] != '#') {
+			x+=1;
+		}
+	}
+
+	public void moveLeft() {
+		if(x<=9 && x>0 && levelMap.getMap()[y][x-1] != '#') {
+			x-=1;
+		}
+	}
 
 }
