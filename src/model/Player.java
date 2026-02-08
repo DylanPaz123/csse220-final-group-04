@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
 
-public class Player  {
+public class Player {
 	private static BufferedImage sprite = null;
 	private static boolean triedLoad = false;
 	public int x,y;

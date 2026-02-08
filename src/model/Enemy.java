@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Color;
+import java.util.Random;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -50,6 +51,26 @@ public class Enemy  {
 		if(y<=9 && y>0 && levelMap.getMap()[y-1][x] != '#') {
 			y-=1;
 		}
+	}
+	
+	public void move() {
+		Random rng = new Random();
+		if(rng.nextInt(0,75) == 0) {
+			int direction = rng.nextInt(0,3);
+			if(direction == 0){
+				moveUp();
+			}
+			else if(direction == 1){
+				moveDown();
+			}
+			else if(direction == 2){
+				moveRight();
+			}
+			else if(direction == 3){
+				moveLeft();
+			}
+		}
+		
 	}
 	
 	public void moveRight() {

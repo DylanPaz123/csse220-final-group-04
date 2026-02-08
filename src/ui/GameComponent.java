@@ -16,7 +16,6 @@ public class GameComponent extends JComponent {
 	private GameModel model;
 	private Timer timer;
 	
-	private int directionEnemy;
 	private Random random = new Random();
 
 	public GameComponent(GameModel model) {
@@ -24,17 +23,12 @@ public class GameComponent extends JComponent {
 	timer = new Timer(30, e -> {
 		
 		for(int i=0; i<model.enemyList.size(); i++) {
-			directionEnemy = random.nextInt(75);
-			if (directionEnemy == 0) {
-				model.enemyList.get(i).moveDown();
-			} else if (directionEnemy == 1) {
-				model.enemyList.get(i).moveLeft();
-			} else if (directionEnemy == 2) {
-				model.enemyList.get(i).moveUp();
-			} else if (directionEnemy == 3) {
-				model.enemyList.get(i).moveRight();
+			this.model.enemyList.get(i).move();
+			if (this.model.enemyList.get(i).x == this.model.player.x && this.model.enemyList.get(i).y == this.model.player.y) {
+				System.out.print("die");
 			}
 		}
+		
     	repaint();
     });
 	
