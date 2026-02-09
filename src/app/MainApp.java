@@ -3,7 +3,6 @@ package app;
 import javax.swing.SwingUtilities;
 
 import ui.GameWindow;
-import model.GameModel;
 /**
  * Class: MainApp
  * @author Team Underscore (Group 04) 
@@ -12,7 +11,6 @@ import model.GameModel;
  * Entry point for the final project.
  */
 public class MainApp {
-	private GameModel game = new GameModel();
 	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {

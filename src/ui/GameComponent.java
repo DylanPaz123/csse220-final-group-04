@@ -9,15 +9,12 @@ import javax.swing.JComponent;
 import javax.swing.Timer;
 
 import model.GameModel;
-import model.Player;
-import java.util.Random;
 
+@SuppressWarnings("serial")
 public class GameComponent extends JComponent {
 	private GameModel model;
 	private Timer timer;
 	
-	private Random random = new Random();
-
 	public GameComponent(GameModel model) {
 	this.model = model;
 	timer = new Timer(30, e -> {
