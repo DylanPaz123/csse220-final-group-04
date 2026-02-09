@@ -9,17 +9,27 @@ import javax.swing.JComponent;
 import javax.swing.Timer;
 
 import model.GameModel;
-import model.Player;
 
+@SuppressWarnings("serial")
 public class GameComponent extends JComponent {
 	private GameModel model;
 	private Timer timer;
-
+	
 	public GameComponent(GameModel model) {
 	this.model = model;
-	timer = new Timer(10, e -> {
+	timer = new Timer(30, e -> {
+		
+		for(int i=0; i<model.enemyList.size(); i++) {
+			this.model.enemyList.get(i).move();
+			if (this.model.enemyList.get(i).x == this.model.player.x && this.model.enemyList.get(i).y == this.model.player.y) {
+				System.out.print("die");
+			}
+		}
+		
     	repaint();
     });
+	
+	
 	timer.start();
     
 	
