@@ -9,14 +9,14 @@ public class Level {
 	private Enemy enemy;
 	private char[][] levelMap;
 	private int levelId;
-	
+	private Diamond diamond;
 	HashMap<Integer, char[][]> levels = new HashMap<>();
 	
 	public Level() {
 		
 	}
 	
-	public void initializeLevel(int levelId, Player player, ArrayList<Tile> tileList, ArrayList<Enemy> enemyList) {
+	public void initializeLevel(int levelId, Player player, ArrayList<Tile> tileList, ArrayList<Enemy> enemyList, ArrayList<Diamond> diamondList) {
 			this.levelMap = levels.get(levelId);
 		
 		for (int y = 0; y < levelMap.length ; y++) {
@@ -27,8 +27,12 @@ public class Level {
 				} else if (levelMap[y][x] == ('#')) {
 					Tile newWall = new Tile(x,y,"lightwall.png");
 					tileList.add(newWall);
-				} else if (levelMap[y][x]==('G')) {
-					
+				} else if (levelMap[y][x]==('D')) {
+					// Initialize Gem
+					Tile newGround = new Tile(x,y,"darkwall.png");
+					tileList.add(newGround);
+					Diamond newDiamond = new Diamond(x,y,"diamond.png");
+					diamondList.add(newDiamond);
 				} else if (levelMap[y][x]==('P')) {
 					// initialize player
 					Tile newTile = new Tile(x,y,"darkwall.png");

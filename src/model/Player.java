@@ -3,6 +3,8 @@ package model;
 
 public class Player extends Entity {
 	
+	public int lives = 3;
+	public int score = 0;
 	public Player(int x, int y, String imgSource) {
 		super(x,y,imgSource);
 	}
