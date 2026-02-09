@@ -21,13 +21,13 @@ public class Enemy extends Entity {
 	}
 	public void moveAway() {
 		if(x<9 && x>=0 && levelMap.getMap()[y][x+1] != '#') {
-			x+=1;
-		} else if(x<9 && x>=0 && levelMap.getMap()[y][x-1] != '#') {
-			x-=1;
-		} else if(x<9 && x>=0 && levelMap.getMap()[y+1][x] != '#') {
 			y+=1;
-		}else {
+		} else if(x<9 && x>=0 && levelMap.getMap()[y][x-1] != '#') {
 			y-=1;
+		} else if(x<9 && x>=0 && levelMap.getMap()[y+1][x] != '#') {
+			x+=1;
+		}else {
+			x-=1;
 		}
 	}
 	
