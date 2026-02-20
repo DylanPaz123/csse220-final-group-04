@@ -74,9 +74,18 @@ public class GameComponent extends JComponent {
   						
   						model.diamondList.remove(i);
   						model.player.score += 1;
+  						if (model.diamondList.isEmpty()) {
+  							model.exits.get(0).Open();
+  							
+  						}
   						collectedDiamond = true;
   					}
+  					
   				}
+  				if (model.exits.get(0).x ==model.player.x && model.exits.get(0).y == model.player.y && model.diamondList.isEmpty()) {
+						model.nextLevel(2);
+						
+					}
   			if (collectedDiamond == false) {
   				model.player.moveDown();
   			}
@@ -116,7 +125,11 @@ public class GameComponent extends JComponent {
 		for(int i=0; i<model.diamondList.size(); i++) {
 			model.diamondList.get(i).draw(g2);
 		}
+		for(int i=0; i<model.exits.size(); i++) {
+			model.exits.get(i).draw(g2);
+		}
 		model.player.draw(g2);
+		
 		Font font = new Font("Serif", Font.PLAIN, 36);
 		
 		g.setFont(font);

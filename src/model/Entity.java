@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Entity {
-	private BufferedImage sprite = null;
+	protected BufferedImage sprite = null;
 	private boolean triedLoad = false;
 	public int x,y;
 	Level levelMap;

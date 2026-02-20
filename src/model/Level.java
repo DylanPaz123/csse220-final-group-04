@@ -1,6 +1,9 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 public class Level {
@@ -10,13 +13,14 @@ public class Level {
 	private char[][] levelMap;
 	private int levelId;
 	private Diamond diamond;
+	private ExitTile exit;
 	HashMap<Integer, char[][]> levels = new HashMap<>();
 	
 	public Level() {
 		
 	}
 	
-	public void initializeLevel(int levelId, Player player, ArrayList<Tile> tileList, ArrayList<Enemy> enemyList, ArrayList<Diamond> diamondList) {
+	public void initializeLevel(int levelId, Player player, ArrayList<Tile> tileList, ArrayList<Enemy> enemyList, ArrayList<Diamond> diamondList, ArrayList<ExitTile> exits) {
 			this.levelMap = levels.get(levelId);
 		
 		for (int y = 0; y < levelMap.length ; y++) {
@@ -48,7 +52,12 @@ public class Level {
 					enemyList.add(newEnemy);
 					newEnemy.levelMap = this;
 				} else if (levelMap[y][x]==('E')) {
-					// initialize exit
+					// Initialize Gem
+					Tile newGround = new Tile(x,y,"darkwall.png");
+					tileList.add(newGround);
+					ExitTile newExit = new ExitTile(x,y,"closed door.png");
+					
+					exits.add(newExit);
 				}
 			}
 			
@@ -64,5 +73,7 @@ public class Level {
 	 public char[][] getMap() {
 		return levelMap;
 	 }
-
+	 
+	 
+	
 }
