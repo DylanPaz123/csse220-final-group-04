@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -18,18 +19,20 @@ import java.awt.image.BufferedImage;
 
 @SuppressWarnings("serial")
 public class GameComponent extends JComponent {
-	
 	private GameModel model;
 	private Timer timer;
 	private JTextField lives;
 	private boolean gameOverToggle = false;
 	private BufferedImage gameOverSprite;
+	private GameWindow window;
 	
-	public GameComponent(GameModel model) {
+	public GameComponent(GameModel model, GameWindow window) {
 	this.model = model;
+	this.window = window;
 	this.lives = new JTextField("Lives: 3");
 	
 	timer = new Timer(30, e -> {
+		grabFocus();
 		
 		for(int i=0; i<model.enemyList.size(); i++) {
 			this.model.enemyList.get(i).move();
@@ -44,9 +47,6 @@ public class GameComponent extends JComponent {
 		
     	repaint();
     });
-	
-	
-	timer.start();
     
 	String gameOverImgSource = "gameover.png";
 	try {
@@ -56,6 +56,7 @@ public class GameComponent extends JComponent {
 	}
 	
 	setFocusable(true);
+	
 	addKeyListener(new KeyAdapter() {
   	  @Override
   	  public void keyPressed(KeyEvent e) {
@@ -100,6 +101,7 @@ public class GameComponent extends JComponent {
 	protected void paintComponent(Graphics g) {
 	super.paintComponent(g);
 	Graphics2D g2 = (Graphics2D) g;
+
 	
 	if(!gameOverToggle) {
 		for(int i=0; i<model.tileList.size(); i++) {
@@ -121,16 +123,14 @@ public class GameComponent extends JComponent {
 		g.drawString("Score: " + model.player.score,10, 60);
 	} else {
 		if (gameOverSprite != null) {
-			// sprite replaces the rect
-			g2.drawImage(gameOverSprite, 0, 0, 515, 535, null);
-			} else {
-			// fallback if sprite failed to load
-			g2.setColor(Color.RED);
-			g2.fillRect(0, 0, 515, 535);
+			window.gameOver();
+			timer.stop();
 		}
 		
 	}
 	}
 	
-	
+	public void startGame() {
+		timer.start();
+	}
 }
