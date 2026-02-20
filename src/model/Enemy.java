@@ -24,7 +24,7 @@ public class Enemy extends Entity {
 			x+=1;
 		} else if(x<9 && x>=0 && levelMap.getMap()[y][x-1] != '#') {
 			x-=1;
-		} else if(x<9 && x>=0 && levelMap.getMap()[y+1][x] != '#') {
+		} else if(y<9 && y>=0 && levelMap.getMap()[y+1][x] != '#') {
 			y+=1;
 		}else {
 			y-=1;
