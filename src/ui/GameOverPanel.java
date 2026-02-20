@@ -3,6 +3,7 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,12 +18,18 @@ public class GameOverPanel extends JPanel {
 		buttonRow = new JPanel();
 		buttonRow.setLayout(new FlowLayout(FlowLayout.CENTER));
 		setLayout(new BorderLayout());
+		title = new JLabel("Game Over!");
 		
-		title = new JLabel("GameOver");
 		restartButton = new JButton("Restart");
 		exitButton = new JButton("Exit");
 		
-		add(title, BorderLayout.CENTER); 
+		ImageIcon icon = new ImageIcon(getClass().getResource("gameover.png"));
+        JLabel imageLabel = new JLabel(icon);
+        
+		
+		add(title); 
+		add(imageLabel);
+		
 		buttonRow.add(restartButton);
 		buttonRow.add(exitButton);
 		

@@ -67,26 +67,43 @@ public class GameComponent extends JComponent {
   			
           }
   		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-  			boolean collectedDiamond = false;
-  				for(int i=0; i<model.diamondList.size(); i++) {
-  					
-  					if (model.diamondList.get(i).x ==model.player.x && model.diamondList.get(i).y == model.player.y) {
-  						
-  						model.diamondList.remove(i);
-  						model.player.score += 1;
-  						if (model.diamondList.isEmpty()) {
-  							model.exits.get(0).Open();
-  							
-  						}
-  						collectedDiamond = true;
-  					}
-  					
-  				}
-  				if (model.exits.get(0).x ==model.player.x && model.exits.get(0).y == model.player.y && model.diamondList.isEmpty()) {
-						model.nextLevel(2);
+  			boolean collectibleAvailable = false;
+  			for(int i=0; i<model.diamondList.size(); i++) {
+					
+					if (model.diamondList.get(i).x ==model.player.x && model.diamondList.get(i).y == model.player.y) {
 						
+						model.player.score += model.diamondList.get(i).getPointWorth();
+						model.diamondList.remove(i);
+						if (model.diamondList.isEmpty()) {
+							model.exits.get(0).Open();
+							
+						}
+						collectibleAvailable = true;
 					}
-  			if (collectedDiamond == false) {
+					
+					
+					
+				}
+  			
+  			for(int i=0; i<model.emeraldList.size(); i++) {
+				
+				if (model.emeraldList.get(i).x ==model.player.x && model.emeraldList.get(i).y == model.player.y) {
+						
+						
+						model.player.score += model.emeraldList.get(i).getPointWorth();
+						model.emeraldList.remove(i);
+						collectibleAvailable = true;
+				}
+					
+			}
+  			
+  			if (model.exits.get(0).x ==model.player.x && model.exits.get(0).y == model.player.y && model.diamondList.isEmpty()) {
+				model.nextLevel(2);
+				if(model.player.score >= 6) {
+					gameOverToggle = true;
+				}
+  			}
+  			if (collectibleAvailable == false) {
   				model.player.moveDown();
   			}
   	      
@@ -124,6 +141,9 @@ public class GameComponent extends JComponent {
 
 		for(int i=0; i<model.diamondList.size(); i++) {
 			model.diamondList.get(i).draw(g2);
+		}
+		for(int i=0; i<model.emeraldList.size(); i++) {
+			model.emeraldList.get(i).draw(g2);
 		}
 		for(int i=0; i<model.exits.size(); i++) {
 			model.exits.get(i).draw(g2);

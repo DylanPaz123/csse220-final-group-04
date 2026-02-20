@@ -3,7 +3,13 @@ package model;
 import java.util.Random;
 
 public class Enemy extends Entity {
-
+	private int moveChance = 75;
+	
+	public Enemy(int x, int y, String imgSource, int moveChance) {
+		super(x, y, imgSource);
+		this.moveChance = moveChance;
+	}
+	
 	public Enemy(int x, int y, String imgSource) {
 		super(x, y, imgSource);
 	}
@@ -33,8 +39,8 @@ public class Enemy extends Entity {
 	
 	public void move() {
 		Random rng = new Random();
-		if(rng.nextInt(0,75) == 0) {
-			int direction = rng.nextInt(0,3);
+		if(rng.nextInt(0,moveChance) == 0) {
+			int direction = rng.nextInt(0,4);
 			if(direction == 0){
 				moveUp();
 			}

@@ -13,12 +13,14 @@ public class GameModel {
 	public Player player;
 	public ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 	public ArrayList<Tile> tileList = new ArrayList<Tile>();
-	public ArrayList<Diamond> diamondList = new ArrayList<Diamond>();
+	public ArrayList<Collectible> diamondList = new ArrayList<Collectible>();
+	public ArrayList<Collectible> emeraldList = new ArrayList<Collectible>();
 	public ArrayList<ExitTile> exits = new ArrayList<ExitTile>();
+	
 	private char[][] levelOne ={{ 'P', '#', '#', '#', '.', '.', '.', '.', '.', '.' },
 								{ '.', '#', '#', '#', '.', '.', '.', '.', 'Z', '.' },
 								{ '.', '#', '#', '#', '.', '.', '#', '.', '.', '.' },
-								{ '.', '.', '.', '.', '.', 'D', '#', '.', '.', '.' },
+								{ '.', '.', '.', '.', '.', 'D', '#', '.', 'e', '.' },
 								{ '.', '.', '.', 'D', '.', '.', '#', '.', '.', '.' },
 								{ '.', '.', '.', '.', '.', '.', '#', '#', '#', '#' },
 								{ '#', '#', '#', '#', '.', '.', '.', '.', '.', '.' },
@@ -28,10 +30,10 @@ public class GameModel {
 	
 	
 	private char[][] levelTwo ={{ '.', '#', '#', '#', '.', '.', '.', '.', '.', '.' },
-								{ 'E', '#', '.', '#', '.', '.', '.', '.', 'Z', '.' },
+								{ 'E', '#', '.', '#', '.', 'C', '.', '.', 'C', '.' },
 								{ '.', '#', '.', '#', '.', '.', '#', '.', '.', '.' },
 								{ '.', '#', 'Z', '.', '.', 'D', '#', 'D', '.', '.' },
-								{ '.', '#', '.', '#', '#', '.', '#', '.', '.', '.' },
+								{ '.', '#', '.', '#', '#', '.', '#', '.', 'e', '.' },
 								{ '.', '.', '.', '.', '.', '.', '#', '#', '#', '#' },
 								{ '#', '#', '#', '#', '.', '.', '.', '.', '.', '.' },
 								{ '.', '.', '.', '#', '.', '.', '.', '.', 'D', '.' },
@@ -39,12 +41,12 @@ public class GameModel {
 								{ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' }};
 	
 	public GameModel() {
-		System.out.print("Model Made");
+		// System.out.print("Model Made");
 		player = new Player(0,0,"steve.png");
 		level.addLevel(1, levelOne);
 		level.addLevel(2, levelTwo);
 		//addLevels(1);
-		level.initializeLevel(1, player, tileList, enemyList, diamondList, exits);
+		level.initializeLevel(1, player, tileList, enemyList, diamondList, emeraldList, exits);
 	}
 
 	 public void addLevels(int numOfLevels) {
@@ -53,9 +55,6 @@ public class GameModel {
 			    	Scanner scanner = new Scanner(file);
 			    	 
 			    	 int level = 1;
-
-					    
-					    	
 					    	char[][] levelArray = new char[10][10];
 					     // String line = scanner.nextLine();
 					      for (int y = 0; y < 10;y++) {
@@ -81,8 +80,9 @@ public class GameModel {
 		    enemyList.clear();
 		    diamondList.clear();
 		    exits.clear();
+		    emeraldList.clear();
 
-		 level.initializeLevel(levelNum, player, tileList, enemyList, diamondList, exits);
+		 level.initializeLevel(levelNum, player, tileList, enemyList, diamondList, emeraldList, exits);
 	 }
 	 
 	

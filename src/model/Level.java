@@ -9,10 +9,8 @@ import java.util.Arrays;
 public class Level {
 	
 	private Player player;
-	private Enemy enemy;
 	private char[][] levelMap;
 	private int levelId;
-	private Diamond diamond;
 	private ExitTile exit;
 	HashMap<Integer, char[][]> levels = new HashMap<>();
 	
@@ -20,7 +18,7 @@ public class Level {
 		
 	}
 	
-	public void initializeLevel(int levelId, Player player, ArrayList<Tile> tileList, ArrayList<Enemy> enemyList, ArrayList<Diamond> diamondList, ArrayList<ExitTile> exits) {
+	public void initializeLevel(int levelId, Player player, ArrayList<Tile> tileList, ArrayList<Enemy> enemyList, ArrayList<Collectible> diamondList, ArrayList<Collectible> emeraldList, ArrayList<ExitTile> exits) {
 			this.levelMap = levels.get(levelId);
 		
 		for (int y = 0; y < levelMap.length ; y++) {
@@ -35,8 +33,14 @@ public class Level {
 					// Initialize Gem
 					Tile newGround = new Tile(x,y,"darkwall.png");
 					tileList.add(newGround);
-					Diamond newDiamond = new Diamond(x,y,"diamond.png");
+					Collectible newDiamond = new Collectible(x,y,"diamond.png",1);
 					diamondList.add(newDiamond);
+				} else if (levelMap[y][x]==('e')) {
+					// Initialize Gem
+					Tile newGround = new Tile(x,y,"darkwall.png");
+					tileList.add(newGround);
+					Collectible newEmerald = new Collectible(x,y,"emerald.png",2);
+					emeraldList.add(newEmerald);
 				} else if (levelMap[y][x]==('P')) {
 					// initialize player
 					Tile newTile = new Tile(x,y,"darkwall.png");
@@ -49,6 +53,12 @@ public class Level {
 					Tile newTile = new Tile(x,y,"darkwall.png");
 					tileList.add(newTile);
 					Enemy newEnemy = new Enemy(x,y,"zombiemc.png");
+					enemyList.add(newEnemy);
+					newEnemy.levelMap = this;
+				} else if (levelMap[y][x]==('C')) {
+					Tile newTile = new Tile(x,y,"darkwall.png");
+					tileList.add(newTile);
+					Enemy newEnemy = new Enemy(x,y,"creeper.png", 9);
 					enemyList.add(newEnemy);
 					newEnemy.levelMap = this;
 				} else if (levelMap[y][x]==('E')) {
