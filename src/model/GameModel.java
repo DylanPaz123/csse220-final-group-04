@@ -42,15 +42,15 @@ public class GameModel {
 								{ '.', 'P', '.', '#', '.', 'D', '.', '.', 'Z', '.' },
 								{ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' }};
 	
-	private char[][] levelThree ={{ 'P', '#', '#', '#', '.', '.', '.', '.', '.', '.' },
-								{ '.', '#', '#', '#', '.', '.', '.', '.', 'Z', '.' },
-								{ '.', '#', '#', '#', '.', '.', '#', '.', '.', '.' },
+	private char[][] levelThree ={{ 'E', '#', '#', '#', '.', '.', '.', '.', '.', '.' },
+								{ '.', '.', '.', '#', '.', '.', '.', '.', 'Z', '.' },
+								{ '#', '#', '.', '#', '.', '.', '#', '.', '.', '.' },
 								{ '.', '.', '.', '.', '.', 'D', '#', '.', 'e', '.' },
-								{ '.', '.', '.', 'D', '.', '.', '#', '.', '.', '.' },
+								{ '.', 'Z', '.', 'D', '.', '.', '#', '.', '.', '.' },
 								{ '.', '.', '.', '.', '.', '.', '#', '#', '#', '#' },
-								{ '#', '#', '#', '#', '.', '.', '.', '.', '.', '.' },
-								{ '.', '.', '.', '#', '.', '.', '.', '.', '.', '.' },
-								{ '.', 'E', '.', '#', '.', 'D', '.', '.', 'Z', '.' },
+								{ '#', '#', '#', '#', '.', '.', 'D', '#', '.', 'D' },
+								{ 'e', 'C', '.', '#', '.', '.', '#', '#', '.', '.' },
+								{ '#', 'Z', '.', '#', '.', 'D', '.', '.', 'P', '.' },
 								{ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' }};
 	public GameModel() {
 		// System.out.print("Model Made");
@@ -88,7 +88,7 @@ public class GameModel {
 			    }
 
 		}
-	 public void nextLevel() {
+	 public boolean nextLevel() {
 		 tileList.clear();
 		    enemyList.clear();
 		    diamondList.clear();
@@ -96,10 +96,13 @@ public class GameModel {
 		    emeraldList.clear();
 		    if (currentLevel == numLevels) {
 		    	//gameOverToggle = true;
+		    	
+		    	return true;
 		    } else {
 		    currentLevel++;
 
 		 level.initializeLevel(currentLevel, player, tileList, enemyList, diamondList, emeraldList, exits);
+		 return false;
 		    }
 	 }
 	 

@@ -65,5 +65,9 @@ public class GameWindow {
 	public static void gameOver() {
 		cl.show(cards, "GAMEOVER");
 	}
+	public static void winScreen() {
+		cl.show(cards, "START");
+		
+	}
 
 }

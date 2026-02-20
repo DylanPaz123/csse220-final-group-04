@@ -25,7 +25,7 @@ public class GameComponent extends JComponent {
 	private boolean gameOverToggle = false;
 	private BufferedImage gameOverSprite;
 	private GameWindow window;
-	
+	private boolean showWinScreen = false;
 	public GameComponent(GameModel model, GameWindow window) {
 	this.model = model;
 	this.window = window;
@@ -98,7 +98,13 @@ public class GameComponent extends JComponent {
 			}
   			
   			if (model.exits.get(0).x ==model.player.x && model.exits.get(0).y == model.player.y && model.diamondList.isEmpty()) {
-				model.nextLevel();
+				if (model.nextLevel()) {
+					//window.winScreen();
+					showWinScreen = true;
+					timer.stop();
+					
+				}
+				
 				//if(model.player.score >= 6) {
 				//	gameOverToggle = true;
 			//	}
@@ -155,6 +161,13 @@ public class GameComponent extends JComponent {
 		g.setFont(font);
 		g.drawString("Lives: " + model.player.lives,10 , 30);
 		g.drawString("Score: " + model.player.score,10, 60);
+		if (showWinScreen) {
+			Font winFont = new Font("Serif", Font.BOLD, 75);
+			
+			g.setFont(winFont);
+			g.drawString("YOU WIN!",75 , 250);
+			
+		}
 	} else {
 		if (gameOverSprite != null) {
 			window.gameOver();
