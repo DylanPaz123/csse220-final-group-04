@@ -43,6 +43,7 @@ public class GameWindow {
 		});
 		
 		gameOver.getRestartButton().addActionListener(e -> {
+			model = new GameModel();
 			game = new GameComponent(model, new GameWindow());
 			cards.remove(2);
 			cards.add(game, "GAME");

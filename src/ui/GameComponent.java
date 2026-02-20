@@ -42,7 +42,6 @@ public class GameComponent extends JComponent {
 				if (model.player.lives == 0) {
 					model.enemyList.clear();
 					gameOverToggle = true;
-					GameWindow.show();
 				}
 			}
 		}
