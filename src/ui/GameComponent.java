@@ -159,11 +159,12 @@ public class GameComponent extends JComponent {
 		Font font = new Font("Serif", Font.PLAIN, 36);
 		
 		g.setFont(font);
+		g.setColor(Color.WHITE);
 		g.drawString("Lives: " + model.player.lives,10 , 30);
 		g.drawString("Score: " + model.player.score,10, 60);
 		if (showWinScreen) {
 			Font winFont = new Font("Serif", Font.BOLD, 75);
-			
+			g.setColor(Color.BLACK);
 			g.setFont(winFont);
 			g.drawString("YOU WIN!",75 , 250);
 			
