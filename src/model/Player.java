@@ -1,16 +1,19 @@
 package model;
 
+import javax.swing.Timer;
 
 public class Player extends Entity {
 	
 	public int lives = 3;
 	public int score = 0;
+	private Timer timer;
 	public Player(int x, int y, String imgSource) {
 		super(x,y,imgSource);
 	}
 
 	public void moveDown() {
 		if(y<9 && y>=0 && levelMap.getMap()[y+1][x] != '#') {
+			
 			y+=1;
 		}
 	}

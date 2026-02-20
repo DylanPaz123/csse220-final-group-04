@@ -98,10 +98,10 @@ public class GameComponent extends JComponent {
 			}
   			
   			if (model.exits.get(0).x ==model.player.x && model.exits.get(0).y == model.player.y && model.diamondList.isEmpty()) {
-				model.nextLevel(2);
-				if(model.player.score >= 6) {
-					gameOverToggle = true;
-				}
+				model.nextLevel();
+				//if(model.player.score >= 6) {
+				//	gameOverToggle = true;
+			//	}
   			}
   			if (collectibleAvailable == false) {
   				model.player.moveDown();

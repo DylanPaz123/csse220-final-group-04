@@ -22,11 +22,11 @@ public class Entity {
 	public void draw(Graphics2D g2) {
 		if (sprite != null) {
 		// sprite replaces the circle
-		g2.drawImage(sprite, (x)*50, (y)*50, 50, 50, null);
+		g2.drawImage(sprite, (x)*50,  (y)*50, 50, 50, null);
 		} else {
 		// fallback if sprite failed to load
 		g2.setColor(Color.RED);
-		g2.fillOval((x)*50, (y)*50, 50, 50);
+		g2.fillOval((int) (x)*50,(int) (y)*50, 50, 50);
 		}
 	}
 	

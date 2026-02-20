@@ -10,6 +10,8 @@ import java.util.Scanner;
 public class GameModel {
 
 	public Level level = new Level();
+	private int numLevels = 3;
+	private int currentLevel = 1;
 	public Player player;
 	public ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 	public ArrayList<Tile> tileList = new ArrayList<Tile>();
@@ -40,11 +42,22 @@ public class GameModel {
 								{ '.', 'P', '.', '#', '.', 'D', '.', '.', 'Z', '.' },
 								{ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' }};
 	
+	private char[][] levelThree ={{ 'P', '#', '#', '#', '.', '.', '.', '.', '.', '.' },
+								{ '.', '#', '#', '#', '.', '.', '.', '.', 'Z', '.' },
+								{ '.', '#', '#', '#', '.', '.', '#', '.', '.', '.' },
+								{ '.', '.', '.', '.', '.', 'D', '#', '.', 'e', '.' },
+								{ '.', '.', '.', 'D', '.', '.', '#', '.', '.', '.' },
+								{ '.', '.', '.', '.', '.', '.', '#', '#', '#', '#' },
+								{ '#', '#', '#', '#', '.', '.', '.', '.', '.', '.' },
+								{ '.', '.', '.', '#', '.', '.', '.', '.', '.', '.' },
+								{ '.', 'E', '.', '#', '.', 'D', '.', '.', 'Z', '.' },
+								{ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' }};
 	public GameModel() {
 		// System.out.print("Model Made");
 		player = new Player(0,0,"steve.png");
 		level.addLevel(1, levelOne);
 		level.addLevel(2, levelTwo);
+		level.addLevel(3, levelThree);
 		//addLevels(1);
 		level.initializeLevel(1, player, tileList, enemyList, diamondList, emeraldList, exits);
 	}
@@ -75,14 +88,19 @@ public class GameModel {
 			    }
 
 		}
-	 public void nextLevel(int levelNum) {
+	 public void nextLevel() {
 		 tileList.clear();
 		    enemyList.clear();
 		    diamondList.clear();
 		    exits.clear();
 		    emeraldList.clear();
+		    if (currentLevel == numLevels) {
+		    	//gameOverToggle = true;
+		    } else {
+		    currentLevel++;
 
-		 level.initializeLevel(levelNum, player, tileList, enemyList, diamondList, emeraldList, exits);
+		 level.initializeLevel(currentLevel, player, tileList, enemyList, diamondList, emeraldList, exits);
+		    }
 	 }
 	 
 	
