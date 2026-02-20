@@ -11,14 +11,12 @@ import javax.swing.JPanel;
 public class GameOverPanel extends JPanel {
 	private JButton restartButton;
 	private JButton exitButton;
-	private JLabel title;
 	private JPanel buttonRow;
 	
 	public GameOverPanel() {
 		buttonRow = new JPanel();
 		buttonRow.setLayout(new FlowLayout(FlowLayout.CENTER));
 		setLayout(new BorderLayout());
-		title = new JLabel("Game Over!");
 		
 		restartButton = new JButton("Restart");
 		exitButton = new JButton("Exit");
@@ -26,8 +24,6 @@ public class GameOverPanel extends JPanel {
 		ImageIcon icon = new ImageIcon(getClass().getResource("gameover.png"));
         JLabel imageLabel = new JLabel(icon);
         
-		
-		add(title); 
 		add(imageLabel);
 		
 		buttonRow.add(restartButton);

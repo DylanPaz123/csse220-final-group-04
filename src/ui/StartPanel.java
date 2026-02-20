@@ -11,10 +11,12 @@ public class StartPanel extends JPanel {
 	public StartPanel() {
 		setLayout(new BorderLayout());
 		
-		title = new JLabel("Game Start");
 		startButton = new JButton("Start");
 		
-		add(title, BorderLayout.CENTER); 
+		ImageIcon icon = new ImageIcon(getClass().getResource("titlescreen.png"));
+        JLabel imageLabel = new JLabel(icon);
+		
+		add(imageLabel); 
 		add(startButton, BorderLayout.SOUTH);
 		
 	}
