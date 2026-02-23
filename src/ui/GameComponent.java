@@ -61,12 +61,12 @@ public class GameComponent extends JComponent {
 	addKeyListener(new KeyAdapter() {
   	  @Override
   	  public void keyPressed(KeyEvent e) {
-  		if (e.getKeyCode() == KeyEvent.VK_UP) {
+  		if (e.getKeyCode() == KeyEvent.VK_UP && showWinScreen == false) {
   			
   				model.player.moveUp();
   			
           }
-  		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+  		if (e.getKeyCode() == KeyEvent.VK_DOWN  && showWinScreen == false) {
   			boolean collectibleAvailable = false;
   			for(int i=0; i<model.diamondList.size(); i++) {
 					
@@ -114,10 +114,10 @@ public class GameComponent extends JComponent {
   			}
   	      
         }
-  		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+  		if (e.getKeyCode() == KeyEvent.VK_LEFT  && showWinScreen == false) {
   	      model.player.moveLeft();
         }
-  		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+  		if (e.getKeyCode() == KeyEvent.VK_RIGHT  && showWinScreen == false) {
   	      model.player.moveRight();
         }
   		
@@ -165,12 +165,13 @@ public class GameComponent extends JComponent {
 		if (showWinScreen) {
 			Font winFont = new Font("Serif", Font.BOLD, 75);
 			g.setColor(Color.BLACK);
+			
 			g.setFont(winFont);
 			g.drawString("YOU WIN!",75 , 250);
 			
 		}
 	} else {
-		if (gameOverSprite != null) {
+		if (gameOverSprite != null ) {
 			window.gameOver();
 			timer.stop();
 		}
@@ -180,5 +181,9 @@ public class GameComponent extends JComponent {
 	
 	public void startGame() {
 		timer.start();
+	}
+	
+	public void gameOver() {
+		
 	}
 }
